@@ -1,0 +1,9 @@
+; $Id$
+name = Views Ticker
+description = Create custom news ticker.
+package = Views
+dependencies = views
+
+version = "5.x-1.0-beta1"
+project = "views_ticker"
+

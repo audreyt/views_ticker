@@ -1,0 +1,449 @@
+<?php
+// $Id$
+
+/**
+ * Implementation of hook_views_style_plugins()
+ */
+function views_ticker_views_style_plugins() {
+  $items['ticker_fade'] = array(
+    'name' => t('Ticker: Fade'),
+    'theme' => 'views_ticker_fade',
+    'validate' => 'views_ui_plugin_validate_list',
+    'needs_fields' => true,
+  );
+  $items['ticker_bbc'] = array(
+    'name' => t('Ticker: BBC Style'),
+    'theme' => 'views_ticker_bbc',
+    'validate' => 'views_ui_plugin_validate_list',
+    'needs_fields' => true,
+  );
+  $items['ticker_hscroll'] = array(
+    'name' => t('Ticker: Scroller (Horizontal)'),
+    'theme' => 'views_ticker_hscroll',
+    'validate' => 'views_ui_plugin_validate_list',
+    'needs_fields' => true,
+  );
+  $items['ticker_vscroll'] = array(
+    'name' => t('Ticker: Scroller (Vertical)'),
+    'theme' => 'views_ticker_vscroll',
+    'validate' => 'views_ui_plugin_validate_list',
+    'needs_fields' => true,
+  );
+  return $items;
+}
+
+
+/**
+ * Implementation of hook_views_default_views()
+ */
+function views_ticker_views_default_views() {
+  $view = new stdClass();
+  $view->name = 'news_ticker_fade';
+  $view->description = 'Display a fading news ticker';
+  $view->access = array (
+);
+  $view->view_args_php = '';
+  $view->page = FALSE;
+  $view->page_title = '';
+  $view->page_header = '';
+  $view->page_header_format = '9';
+  $view->page_footer = '';
+  $view->page_footer_format = '9';
+  $view->page_empty = '';
+  $view->page_empty_format = '9';
+  $view->page_type = 'node';
+  $view->url = '';
+  $view->use_pager = TRUE;
+  $view->nodes_per_page = '10';
+  $view->block = TRUE;
+  $view->block_title = 'Latest news (Fade)';
+  $view->block_header = '';
+  $view->block_header_format = '9';
+  $view->block_footer = '';
+  $view->block_footer_format = '9';
+  $view->block_empty = '';
+  $view->block_empty_format = '9';
+  $view->block_type = 'ticker_fade';
+  $view->nodes_per_block = '5';
+  $view->block_more = FALSE;
+  $view->block_use_page_header = FALSE;
+  $view->block_use_page_footer = FALSE;
+  $view->block_use_page_empty = FALSE;
+  $view->sort = array (
+  );
+  $view->argument = array (
+  );
+  $view->field = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'created',
+      'label' => '',
+      'handler' => 'views_handler_field_date_small',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'title',
+      'label' => ': ',
+      'handler' => 'views_handler_field_nodelink',
+      'options' => 'link',
+    ),
+    array (
+      'tablename' => 'node_comment_statistics',
+      'field' => 'comment_count',
+      'label' => ' - Comments: ',
+      'handler' => 'views_handler_field_int',
+    ),
+  );
+  $view->filter = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'promote',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'status',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+  );
+  $view->exposed_filter = array (
+  );
+  $view->requires = array(node, node_comment_statistics);
+  $views[$view->name] = $view;
+
+  
+  $view = new stdClass();
+  $view->name = 'news_ticker_hscroll';
+  $view->description = 'Display a horizontal scrolling news ticker';
+  $view->access = array (
+);
+  $view->view_args_php = '';
+  $view->page = FALSE;
+  $view->page_title = '';
+  $view->page_header = '';
+  $view->page_header_format = '9';
+  $view->page_footer = '';
+  $view->page_footer_format = '9';
+  $view->page_empty = '';
+  $view->page_empty_format = '9';
+  $view->page_type = 'node';
+  $view->url = '';
+  $view->use_pager = TRUE;
+  $view->nodes_per_page = '10';
+  $view->block = TRUE;
+  $view->block_title = 'Latest news (Horizontal scroll)';
+  $view->block_header = '';
+  $view->block_header_format = '9';
+  $view->block_footer = '';
+  $view->block_footer_format = '9';
+  $view->block_empty = '';
+  $view->block_empty_format = '9';
+  $view->block_type = 'ticker_hscroll';
+  $view->nodes_per_block = '5';
+  $view->block_more = FALSE;
+  $view->block_use_page_header = FALSE;
+  $view->block_use_page_footer = FALSE;
+  $view->block_use_page_empty = FALSE;
+  $view->sort = array (
+  );
+  $view->argument = array (
+  );
+  $view->field = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'created',
+      'label' => '',
+      'handler' => 'views_handler_field_date_small',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'title',
+      'label' => ': ',
+      'handler' => 'views_handler_field_nodelink',
+      'options' => 'link',
+    ),
+  );
+  $view->filter = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'promote',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'status',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+  );
+  $view->exposed_filter = array (
+  );
+  $view->requires = array(node);
+  $views[$view->name] = $view;
+
+  
+  $view = new stdClass();
+  $view->name = 'news_ticker_vscroll';
+  $view->description = 'Display a vertical scrolling news ticker';
+  $view->access = array (
+);
+  $view->view_args_php = '';
+  $view->page = FALSE;
+  $view->page_title = '';
+  $view->page_header = '';
+  $view->page_header_format = '9';
+  $view->page_footer = '';
+  $view->page_footer_format = '9';
+  $view->page_empty = '';
+  $view->page_empty_format = '9';
+  $view->page_type = 'node';
+  $view->url = '';
+  $view->use_pager = TRUE;
+  $view->nodes_per_page = '10';
+  $view->block = TRUE;
+  $view->block_title = 'Latest news (Vertical scroll)';
+  $view->block_header = '';
+  $view->block_header_format = '9';
+  $view->block_footer = '';
+  $view->block_footer_format = '9';
+  $view->block_empty = '';
+  $view->block_empty_format = '9';
+  $view->block_type = 'ticker_vscroll';
+  $view->nodes_per_block = '5';
+  $view->block_more = FALSE;
+  $view->block_use_page_header = FALSE;
+  $view->block_use_page_footer = FALSE;
+  $view->block_use_page_empty = FALSE;
+  $view->sort = array (
+  );
+  $view->argument = array (
+  );
+  $view->field = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'created',
+      'label' => '',
+      'handler' => 'views_handler_field_date_small',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'title',
+      'label' => '',
+      'handler' => 'views_handler_field_nodelink',
+      'options' => 'link',
+    ),
+  );
+  $view->filter = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'promote',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'status',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+  );
+  $view->exposed_filter = array (
+  );
+  $view->requires = array(node);
+  $views[$view->name] = $view;
+
+  
+  $view = new stdClass();
+  $view->name = 'news_ticker_bbc_style';
+  $view->description = 'Display a BBC style news ticker';
+  $view->access = array (
+);
+  $view->view_args_php = '';
+  $view->page = FALSE;
+  $view->page_title = '';
+  $view->page_header = '';
+  $view->page_header_format = '9';
+  $view->page_footer = '';
+  $view->page_footer_format = '9';
+  $view->page_empty = '';
+  $view->page_empty_format = '9';
+  $view->page_type = 'node';
+  $view->url = '';
+  $view->use_pager = TRUE;
+  $view->nodes_per_page = '10';
+  $view->block = TRUE;
+  $view->block_title = 'Latest news (BBC Style)';
+  $view->block_header = '';
+  $view->block_header_format = '9';
+  $view->block_footer = '';
+  $view->block_footer_format = '9';
+  $view->block_empty = '';
+  $view->block_empty_format = '9';
+  $view->block_type = 'ticker_bbc';
+  $view->nodes_per_block = '5';
+  $view->block_more = FALSE;
+  $view->block_use_page_header = FALSE;
+  $view->block_use_page_footer = FALSE;
+  $view->block_use_page_empty = FALSE;
+  $view->sort = array (
+  );
+  $view->argument = array (
+  );
+  $view->field = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'title',
+      'label' => '',
+      'handler' => 'views_handler_field_nodelink',
+      'options' => 'link',
+    ),
+  );
+  $view->filter = array (
+    array (
+      'tablename' => 'node',
+      'field' => 'promote',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+    array (
+      'tablename' => 'node',
+      'field' => 'status',
+      'operator' => '=',
+      'options' => '',
+      'value' => '1',
+    ),
+  );
+  $view->exposed_filter = array (
+  );
+  $view->requires = array(node);
+  $views[$view->name] = $view;
+
+  return $views;
+}
+
+/**
+ * Helper function to generate the view using jScroller
+ */
+function _views_ticker_scroller($view, $nodes, $type, $direction) {
+  switch ($direction) {
+    case 'horizontal':
+      $jsclass = 'left';
+      break;
+    case 'vertical':
+      $jsclass = 'up';
+      break;
+  }
+  $direction = 'scroller-'.$direction;   
+  drupal_add_css(drupal_get_path('module', 'views_ticker') .'/views.ticker.scroller.css');
+  drupal_add_js(drupal_get_path('module', 'views_ticker') .'/views.ticker.scroller.js');
+  $fields = _views_get_fields();
+  $output = '<div id="views-ticker-' . $direction . '-' . $view->name . '" class="views-' . $direction . '-container"><div class="jscroller2_' . $jsclass . ' jscroller2_speed-30">';
+  foreach ($nodes as $node) {
+      $items = '<div class="views-' . $direction . '-item views-' . $direction . '-item-' . $view->name . '">';
+    foreach ($view->field as $field) {
+      $item = '';
+      if ($fields[$field['id']]['visible'] !== FALSE) {
+        if ($field['label']) {
+          $item .= "<span class='views-$direction-tick-label views-$direction-tick-label-$field[queryname]'>" . $field['label'] . "</span>";
+        }
+        $item .= "<span class='views-$direction-tick-field views-$direction-tick-field-$field[queryname]'>" . views_theme_field('views_handle_field', $field['queryname'], $fields, $field, $node, $view) . "</span>";
+        
+      }
+      $items .= $item;
+    }
+    $items .= '</div>';
+    $output .= $items;
+  }
+  $output .= '</div></div>';
+  return $output;
+}
+
+/**
+ *
+ * Themeable functions
+ *
+ */
+ 
+ 
+function theme_views_ticker_fade($view, $nodes, $type) {
+  drupal_add_js(drupal_get_path('module', 'views_ticker') .'/views.ticker.fade.js');
+  drupal_add_js('$(document).ready(
+	function()
+	{
+		$("#views-ticker-fade-' . $view->name . '").newsTicker();
+	}
+);','inline');
+  $fields = _views_get_fields();
+  $output = '<div id="views-ticker-fade-container-' . $view->name . '"><ul id="views-ticker-fade-' . $view->name . '">';
+  foreach ($nodes as $node) {
+      $items = '<li class="views-fade-item views-fade-item-' . $view->name . '">';
+    foreach ($view->field as $field) {
+      $item = '';
+      if ($fields[$field['id']]['visible'] !== FALSE) {
+        if ($field['label']) {
+          $item .= "<span class='views-fade-tick-label views-fade-tick-label-$field[queryname]'>" . $field['label'] . "</span>";
+        }
+        $item .= "<span class='views-fade-tick-field views-fade-tick-field-$field[queryname]'>" . views_theme_field('views_handle_field', $field['queryname'], $fields, $field, $node, $view) . "</span>";
+        
+      }
+      $items .= $item;
+    }
+    $items .= '</li>';
+    $output .= $items;
+  }
+  $output .= '</ul></div>';
+  return $output;
+}
+
+
+function theme_views_ticker_bbc($view, $nodes, $type) {
+  drupal_add_js(drupal_get_path('module', 'views_ticker') .'/views.ticker.bbc.js');
+  drupal_add_js('$(document).ready(function() {
+	    var options = {
+  		newsList: "#views-ticker-fade-' . $view->name . '",
+ 		startDelay: 10,
+ 		placeHolder1: " |"
+	}
+	$().newsTicker(options);
+});','inline');
+  $fields = _views_get_fields();
+  $output = '<div id="views-ticker-fade-container-' . $view->name . '"><ul id="views-ticker-fade-' . $view->name . '">';
+  foreach ($nodes as $node) {
+      $items = '<li class="views-fade-item views-fade-item-' . $view->name . '">';
+    foreach ($view->field as $field) {
+      $item = '';
+      if ($fields[$field['id']]['visible'] !== FALSE) {
+        if ($field['label']) {
+          $item .= "<span class='views-fade-tick-label views-fade-tick-label-$field[queryname]'>" . $field['label'] . "</span>";
+        }
+        $item .= "<span class='views-fade-tick-field views-fade-tick-field-$field[queryname]'>" . views_theme_field('views_handle_field', $field['queryname'], $fields, $field, $node, $view) . "</span>";
+        
+      }
+      $items .= $item;
+    }
+    $items .= '</li>';
+    $output .= $items;
+  }
+  $output .= '</ul></div>';
+  return $output;
+}
+
+
+function theme_views_ticker_hscroll($view, $nodes, $type) {
+  return _views_ticker_scroller($view, $nodes, $type, 'horizontal');
+}
+
+
+function theme_views_ticker_vscroll($view, $nodes, $type) {
+  return _views_ticker_scroller($view, $nodes, $type, 'vertical');
+}
