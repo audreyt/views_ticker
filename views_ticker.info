@@ -1,4 +1,3 @@
-; $Id$
 name = Views Ticker
 description = Create custom news ticker.
 package = Views

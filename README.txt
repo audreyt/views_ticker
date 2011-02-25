@@ -1,4 +1,3 @@
-// $Id$
 
 This module provides new styles for Views module to display news tickers.
 

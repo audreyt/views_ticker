@@ -1,5 +1,4 @@
 /*
-$Id$
  * jScroller2 1.35 - Scroller Script
  *
  * Markus Bordihn (markusbordihn.de)

@@ -1,5 +1,4 @@
 /*
-$Id$
 News ticker plugin (BBC news style)
 Bryan Gullan,2007
 version 1.1.1
