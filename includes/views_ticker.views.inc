@@ -63,7 +63,7 @@ function template_preprocess_views_ticker_view(&$variables) {
     drupal_add_js('(function($) { Drupal.behaviors.views_ticker = { attach: function (context) { var options = { newsList: "#views-ticker-fade-'. $view->name .'", startDelay: 10, placeHolder1: " |"}; $().newsTicker(options);}};})(jQuery);', 'inline');
   }
   else {
-    drupal_add_js($path .'/js/jscroller2-1.5.js');
+    drupal_add_js($path .'/js/views.ticker.scroller.js');
   }
 
 
