@@ -22,6 +22,11 @@ elseif ($scroller_type == 'vTicker')
 	print "<div id='views-ticker-vTicker-$viewname'>";
 	print "<ul id='views-ticker-vTicker-list-$viewname'>";
 }
+elseif ($scroller_type == 'bbc')
+{
+	print "<div id='views-ticker-$align-$viewname'>";
+	print "<ul id='views-ticker-bbc-$viewname'>";
+}
 else
 {
 	print "<div id='views-ticker-$align-$viewname'>";
@@ -42,8 +47,16 @@ foreach ($rows as $row)
 	}
 	else
 	{
-		print "<li class='views-fade-item views-fade-item-$viewname'>";
-		print "<span class='views-fade-tick-field views-fade-tick-field-$field'>$row</span></li>";
+		if($scroller_type=='fade')
+		{
+			print "<li class='views-fade-item views-fade-item-$viewname'>";
+			print "<span class='views-fade-tick-field views-fade-tick-field-$field'>$row</span></li>";
+		}
+		else
+		{
+			print "<li class='views-bbc-item views-bbc-item-$viewname'>";
+			print "<span class='views-bbc-tick-field views-bbc-tick-field-$field'>$row</span></li>";
+		}
 	}
 }
 

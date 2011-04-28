@@ -15,23 +15,30 @@ class views_ticker_style_plugin extends views_plugin_style {
 	$options = parent::option_definition();
 	
 	$options['scroller_type'] = array('default' => 'horizontal');
-	$options['hscroller_Options']['hscroller_speed'] = array('default' => 30);
-	$options['hscroller_Options']['hscroller_direction'] = array('default' => 'left');
-	$options['hscroller_Options']['hscroller_mouseover'] = array('default' => 0);
-	$options['hscroller_Options']['hscroller_delay'] = array('default' => 0);
-	$options['hscroller_Options']['hscroller_bounce'] = array('default' => 0);
-	
-	$options['vscroller_Options']['vscroller_speed'] = array('default' => 30);
-	$options['vscroller_Options']['vscroller_direction'] = array('default' => 'up');
-	$options['vscroller_Options']['vscroller_mouseover'] = array('default' => 0);
-	$options['vscroller_Options']['vscroller_delay'] = array('default' => 0);
-	$options['vscroller_Options']['vscroller_bounce'] = array('default' => 0);
 
-	$options['vTicker_Options']['vTicker_mouseover'] = array('default' => 0);
-	$options['vTicker_Options']['vTicker_speed'] = array('default' => 500);
-	$options['vTicker_Options']['vTicker_pause'] = array('default' => 1000);
-	$options['vTicker_Options']['vTicker_items'] = array('default' => 5);
-	$options['vTicker_Options']['vTicker_direction'] = array('default' => 'up');
+	$options['hscroller_Options']['default']=array (
+	'hscroller_speed' => 30,
+	'hscroller_direction' => 'left',
+	'hscroller_mouseover' => 0,
+	'hscroller_delay' => 0,
+	'hscroller_bounce' => 0,
+	);
+	
+	$options['vscroller_Options']['default']=array (
+	'vscroller_speed' => 30,
+	'vscroller_direction' => 'up',
+	'vscroller_mouseover' => 0,
+	'vscroller_delay' => 0,
+	'vscroller_bounce' => 0,
+	);
+	
+	$options['vTicker_Options']['default']=array (
+	'vTicker_mouseover' => 0,
+	'vTicker_speed' => 500,
+	'vTicker_pause' => 1000,
+	'vTicker_items' => 5,
+	'vTicker_direction' => 'up',
+	);
 	
 	return $options;
   }
