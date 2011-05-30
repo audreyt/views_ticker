@@ -12,12 +12,12 @@
 <?php
 print "<div class='view view-$viewname'><div class='view-content view-content-$viewname'>";
 
-if ($scroller_type == 'vertical' || $scroller_type == 'horizontal')
+if ($scroller_type == 'horizontal')
 {
-	print "<div id='views-ticker-$align-$viewname' class='views-$align-container'>";
-	print "<div class='$direction $speed $jmouse $delay $bounce'>";
+	print "<div>";
+	print "<ul id='views-ticker-liScroll-$viewname'>";
 }
-elseif ($scroller_type == 'vTicker')
+elseif ($scroller_type == 'vertical')
 {
 	print "<div id='views-ticker-vTicker-$viewname'>";
 	print "<ul id='views-ticker-vTicker-list-$viewname'>";
@@ -35,47 +35,31 @@ else
 
 foreach ($rows as $row)
 {
-	if ($scroller_type == 'vertical' || $scroller_type == 'horizontal')
+	if ($scroller_type == 'horizontal')
 	{
-		print "<div class='views-$align-item views-$align-item-$viewname'>";
-		print "<span class='views-$align-tick-field views-$align-tick-field-$field'>$row</span></div>";
+		print "<li class='views-liScroll-item views-liScroll-item-$viewname'>";
+		print "<span class='views-liScroll-tick-field'>$row</span></li>";
 	}
-	elseif ($scroller_type == 'vTicker')
+	elseif ($scroller_type == 'vertical')
 	{
 		print "<li class='views-vTicker-item views-vTicker-item-$viewname'>";
-		print "<span class='views-vTicker-tick-field views-vTicker-tick-field-$field'>$row</span></li>";
+		print "<span class='views-vTicker-tick-field'>$row</span></li>";
 	}
-	else
+	elseif($scroller_type=='fade')
 	{
-		if($scroller_type=='fade')
-		{
-			print "<li class='views-fade-item views-fade-item-$viewname'>";
-			print "<span class='views-fade-tick-field views-fade-tick-field-$field'>$row</span></li>";
-		}
-		else
-		{
-			print "<li class='views-bbc-item views-bbc-item-$viewname'>";
-			print "<span class='views-bbc-tick-field views-bbc-tick-field-$field'>$row</span></li>";
-		}
+		print "<li class='views-fade-item views-fade-item-$viewname'>";
+		print "<span class='views-fade-tick-field'>$row</span></li>";
+	}
+	else #bbc
+	{
+		print "<li class='views-bbc-item views-bbc-item-$viewname'>";
+		print "<span class='views-bbc-tick-field'>$row</span></li>";
 	}
 }
 
-if ($scroller_type == 'vertical' || $scroller_type == 'horizontal')
-{
-	print "</div>";
-	// continuous scrolling
-	print "<div class='" . $direction . "_endless'>";
-	foreach ($rows as $row)
-	{
-		print "<div class='views-$align-item views-$align-item-$viewname'>";
-		print "<span class='views-$align-tick-field views-$align-tick-field-$field'>$row</span></div>";
-	}
-	print "</div></div></div></div>";
-}
-else
-{
-	print "</ul></div></div></div>";
-}
+
+print "</ul></div></div></div>";
+
 ?>
 
 <!-- end scroll -->

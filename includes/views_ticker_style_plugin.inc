@@ -16,22 +16,14 @@ class views_ticker_style_plugin extends views_plugin_style {
 	
 	$options['scroller_type'] = array('default' => 'horizontal');
 
-	$options['hscroller_Options']['default']=array (
-	'hscroller_speed' => 30,
-	'hscroller_direction' => 'left',
-	'hscroller_mouseover' => 0,
-	'hscroller_delay' => 0,
-	'hscroller_bounce' => 0,
+	$options['liScroll_Options']['default']=array (
+	'liScroll_speed' => '0.07',
+	'liScroll_direction' => 'left',
+	'liScroll_mouseover' => 0,
+	'liScroll_delay' => 0,
+	'liScroll_bounce' => 0,
 	);
-	
-	$options['vscroller_Options']['default']=array (
-	'vscroller_speed' => 30,
-	'vscroller_direction' => 'up',
-	'vscroller_mouseover' => 0,
-	'vscroller_delay' => 0,
-	'vscroller_bounce' => 0,
-	);
-	
+
 	$options['vTicker_Options']['default']=array (
 	'vTicker_mouseover' => 0,
 	'vTicker_speed' => 500,
@@ -52,156 +44,68 @@ class views_ticker_style_plugin extends views_plugin_style {
 		'#description' => t(''),
 		'#default_value' => $this->options['scroller_type'],
 		'#options' => array(
-		'horizontal' => t('Horizontal'),
-		'vertical' => t('Vertical'),
+		'horizontal' => t('Horizontal'), #liScroll
+		'vertical' => t('Vertical'), #vTicker
 		'fade' => t('Fade'),
 		'bbc' => t('BBC'),
-		'vTicker' => t('vTicker'), #http://www.htmldrive.net/items/show/266/jquery-vticker-vertical-news-ticker.html
 	  ),
 	);
 	
-//####### horizontal Options ########
+//####### horizontal Options (liScroll) ########
 	// horizontal
 	
-	$form['hscroller_Options'] = array(
+	$form['liScroll_Options'] = array(
 		'#type' => 'fieldset',
-		'#title' => t('Horizontal Options'),
+		'#title' => t('Horizontal scroller Options'),
 		'#collapsible' => TRUE,
 		'#collapsed' => TRUE,
 	);
 	
-	$form['hscroller_Options']['hscroller_speed'] = array(
+	$form['liScroll_Options']['liScroll_speed'] = array(
 		'#type' => 'select',
 		'#title' => t('Horizontal scroller speed'),
 		'#description' => t(''),
-		'#default_value' => $this->options['hscroller_Options']['hscroller_speed'],
+		'#default_value' => $this->options['liScroll_Options']['liScroll_speed'],
 		'#options' => array(
-		'10' => t('Very slow'),
-		'20' => t('Slow'),
-		'30' => t('Normal'),
-		'40' => t('Fast'),
-		'50' => t('Very fast'),
+		'0.02' => t('Very slow'),
+		'0.04' => t('Slow'),
+		'0.07' => t('Normal'),
+		'0.10' => t('Fast'),
+		'0.15' => t('Very fast'),
 	  ),
 	);
 	
-	$form['hscroller_Options']['hscroller_direction'] = array(
+	$form['liScroll_Options']['liScroll_direction'] = array(
 		'#type' => 'select',
 		'#title' => t('Horizontal scroller direction'),
 		'#description' => t(''),
-		'#default_value' => $this->options['hscroller_Options']['hscroller_direction'],
+		'#default_value' => $this->options['liScroll_Options']['liScroll_direction'],
 		'#options' => array(
 		'left' => t('Left'),
 		'right' => t('Right'),
 	  ),
 	);
 	
-	$form['hscroller_Options']['hscroller_delay'] = array(
-		'#type' => 'select',
-		'#title' => t('Horizontal scroller delay'),
-		'#description' => t(''),
-		'#default_value' => $this->options['hscroller_Options']['hscroller_delay'],
-		'#options' => array(
-		'0' => t('None'),
-		'1' => t('One second'),
-		'2' => t('Two seconds'),
-		'3' => t('Three seconds'),
-		'4' => t('Four seconds'),
-		'5' => t('Five seconds'),
-		'10' => t('Ten seconds'),
-	  ),
-	);
-	
-	$form['hscroller_Options']['hscroller_mouseover'] = array(
+	$form['liScroll_Options']['liScroll_mouseover'] = array(
 		'#type' => 'checkbox',
 		'#title' => t('Horizontal scroller mouseover'),
 		'#description' => t(''),
-		'#default_value' => $this->options['hscroller_Options']['hscroller_mouseover'],
+		'#default_value' => $this->options['liScroll_Options']['liScroll_mouseover'],
 	);
 	
-	$form['hscroller_Options']['hscroller_bounce'] = array(
-		'#type' => 'checkbox',
-		'#title' => t('Horizontal scroller bounce'),
-		'#description' => t(''),
-		'#default_value' => $this->options['hscroller_Options']['hscroller_bounce'],
-	);
-
-
-//####### vertical Options ########
+//####### vertical Options (vTicker) ########
 	// vertical
-	$form['vscroller_Options'] = array(
-		'#type' => 'fieldset',
-		'#title' => t('Vertical Options'),
-		'#collapsible' => TRUE,
-		'#collapsed' => TRUE,
-	);
-
-	$form['vscroller_Options']['vscroller_speed'] = array(
-		'#type' => 'select',
-		'#title' => t('Vertical scroller speed'),
-		'#description' => t(''),
-		'#default_value' => $this->options['vscroller_Options']['vscroller_speed'],
-		'#options' => array(
-		'10' => t('Very slow'),
-		'20' => t('Slow'),
-		'30' => t('Normal'),
-		'40' => t('Fast'),
-		'50' => t('Very fast'),
-	  ),
-	);
-	
-	$form['vscroller_Options']['vscroller_direction'] = array(
-		'#type' => 'select',
-		'#title' => t('Vertical scroller direction'),
-		'#description' => t(''),
-		'#default_value' => $this->options['vscroller_Options']['vscroller_direction'],
-		'#options' => array(
-		'up' => t('Up'),
-		'down' => t('Down'),
-	  ),
-	);
-	
-	$form['vscroller_Options']['vscroller_delay'] = array(
-		'#type' => 'select',
-		'#title' => t('Vertical scroller delay'),
-		'#description' => t(''),
-		'#default_value' => $this->options['vscroller_Options']['vscroller_delay'],
-		'#options' => array(
-		'0' => t('None'),
-		'1' => t('One second'),
-		'2' => t('Two seconds'),
-		'3' => t('Three seconds'),
-		'4' => t('Four seconds'),
-		'5' => t('Five seconds'),
-		'10' => t('Ten seconds'),
-	  ),
-	);
-	
-	$form['vscroller_Options']['vscroller_mouseover'] = array(
-		'#type' => 'checkbox',
-		'#title' => t('Vertical scroller mouseover'),
-		'#description' => t(''),
-		'#default_value' => $this->options['vscroller_Options']['vscroller_mouseover'],
-	);
-	
-	$form['vscroller_Options']['vscroller_bounce'] = array(
-		'#type' => 'checkbox',
-		'#title' => t('Vertical scroller bounce'),
-		'#description' => t(''),
-		'#default_value' => $this->options['vscroller_Options']['vscroller_bounce'],
-	);
-
-//####### vTicker Options ########
 
 	$form['vTicker_Options'] = array(
 	  '#type' => 'fieldset',
-	  '#title' => t('vTicker Options'),
+	  '#title' => t('Vertical scroller Options'),
 	  '#collapsible' => TRUE,
 	  '#collapsed' => TRUE,
 	);
 
 	$form['vTicker_Options']['vTicker_items'] = array(
 	  '#type' => 'textfield',
-	  '#title' => t('vTicker number of items'),
+	  '#title' => t('Number of items'),
 	  '#description' => t('Number of items to display at a time'),
 	  '#default_value' => $this->options['vTicker_Options']['vTicker_items'],
 	  '#element_validate' => array('vTicker_numeric_element_validate'),
@@ -209,14 +113,14 @@ class views_ticker_style_plugin extends views_plugin_style {
 
 	$form['vTicker_Options']['vTicker_mouseover'] = array(
 	  '#type' => 'checkbox',
-	  '#title' => t('vTicker scroller mouseover'),
+	  '#title' => t('Pause on mouseover'),
 	  '#description' => t(''),
 	  '#default_value' => $this->options['vTicker_Options']['vTicker_mouseover'],
 	);
 	
 	$form['vTicker_Options']['vTicker_pause'] = array(
 	  '#type' => 'select',
-	  '#title' => t('vTicker scroller pause'),
+	  '#title' => t('Scroller pause'),
 	  '#description' => t(''),
 	  '#default_value' => $this->options['vTicker_Options']['vTicker_pause'],
 	  '#options' => array(
@@ -231,7 +135,7 @@ class views_ticker_style_plugin extends views_plugin_style {
 	
 	$form['vTicker_Options']['vTicker_speed'] = array(
 	  '#type' => 'select',
-	  '#title' => t('vTicker scroller speed'),
+	  '#title' => t('Scroller speed'),
 	  '#description' => t(''),
 	  '#default_value' => $this->options['vTicker_Options']['vTicker_speed'],
 	  '#options' => array(
@@ -245,7 +149,7 @@ class views_ticker_style_plugin extends views_plugin_style {
 
 	$form['vTicker_Options']['vTicker_direction'] = array(
 		'#type' => 'select',
-		'#title' => t('vTicker scroller direction'),
+		'#title' => t('Scroller direction'),
 		'#description' => t(''),
 		'#default_value' => $this->options['vTicker_Options']['vTicker_direction'],
 		'#options' => array(
