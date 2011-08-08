@@ -18,6 +18,3 @@ Put in the views tickers only short fields!
 This module also provides some default views, try them enabling relative blocks in admin/build/block.
 There are themeable functions, take a look at views_ticker.module
 
- 
-
-
