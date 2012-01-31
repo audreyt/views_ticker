@@ -31,6 +31,11 @@ class views_ticker_style_plugin extends views_plugin_style {
 	'vTicker_items' => 5,
 	'vTicker_direction' => 'up',
 	);
+
+	$options['bbc_Options']['default']=array (
+	'bbc_speed' => 50,
+	'bbc_pause' => 3000,
+	);
 	
 	return $options;
   }
@@ -91,6 +96,47 @@ class views_ticker_style_plugin extends views_plugin_style {
 		'#title' => t('Horizontal scroller mouseover'),
 		'#description' => t(''),
 		'#default_value' => $this->options['liScroll_Options']['liScroll_mouseover'],
+	);
+
+	$form['bbc_Options'] = array(
+	  '#type' => 'fieldset',
+	  '#title' => t('BBC Options'),
+	  '#collapsible' => TRUE,
+	  '#collapsed' => TRUE,
+	);
+
+	$form['bbc_Options']['bbc_pause'] = array(
+	  '#type' => 'select',
+	  '#title' => t('BBC pause'),
+	  '#description' => t(''),
+	  '#default_value' => $this->options['bbc_Options']['bbc_pause'],
+	  '#options' => array(
+		500 => t('500 millisecond'),
+		1000 => t('One second'),
+		2000 => t('Two seconds'),
+		3000 => t('Three seconds'),
+		4000 => t('Four seconds'),
+		5000 => t('Five seconds'),
+		6000 => t('Six seconds'),
+		7000 => t('Seven seconds'),
+		8000 => t('Eight seconds'),
+		9000 => t('Nine seconds'),
+		10000 => t('Ten seconds'),
+	  ),
+	);
+	
+	$form['bbc_Options']['bbc_speed'] = array(
+	  '#type' => 'select',
+	  '#title' => t('BBC speed'),
+	  '#description' => t(''),
+	  '#default_value' => $this->options['bbc_Options']['bbc_speed'],
+	  '#options' => array(
+		200 => t('Very slow'),
+		150 => t('Slow'),
+		80 => t('Normal'),
+		40 => t('Fast'),
+		20 => t('Very fast'),
+	  ),
 	);
 	
 //####### vertical Options (vTicker) ########

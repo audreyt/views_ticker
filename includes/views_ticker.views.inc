@@ -43,6 +43,11 @@ function template_preprocess_views_ticker_view(&$variables)
 		$vTickerOpts .= ' , showItems:' . $options['vTicker_Options']['vTicker_items'];
 		$vTickerOpts .= ' , direction: "' . $options['vTicker_Options']['vTicker_direction'] . '"';
 	}
+	elseif ($options['scroller_type'] == 'bbc')
+	{
+		$bbcOpts .= ' , tickerRate:' . $options['bbc_Options']['bbc_speed'];
+		$bbcOpts .= ' , loopDelay:' . $options['bbc_Options']['bbc_pause'];
+	}
 	else
 	{
 		$variables['align'] = 'fade-container';
@@ -56,7 +61,7 @@ function template_preprocess_views_ticker_view(&$variables)
 	elseif ($options['scroller_type'] == 'bbc')
 	{
 		drupal_add_js($path . '/js/views.ticker.bbc.js');
-		drupal_add_js('(function($) { Drupal.behaviors.views_ticker_bbc = { attach: function (context) { var options = { newsList: "#views-ticker-bbc-' . $view->name . '", startDelay: 10, placeHolder1: " |"}; $().newsTicker(options);}};})(jQuery);', 'inline');
+		drupal_add_js('(function($) { Drupal.behaviors.views_ticker_bbc = { attach: function (context) { var options = { newsList: "#views-ticker-bbc-' . $view->name . '"' . $bbcOpts . ', startDelay: 10, placeHolder1: " |"}; $().newsTicker(options);}};})(jQuery);', 'inline');
 	}
 	elseif ($options['scroller_type'] == 'vertical')
 	{
